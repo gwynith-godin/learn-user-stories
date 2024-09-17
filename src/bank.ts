@@ -55,7 +55,7 @@ export default class Bank{
         const bankAccount = this.findAccount(accountNumber);
         if(!bankAccount) {
             // if the account does not exist, throw an error
-            throw new Error("Account already exists");
+            throw new Error("This account does not exist.");
         }
 
         // check if the amount exceeds the deposit limit
@@ -66,5 +66,33 @@ export default class Bank{
         // add the money to the balance
         bankAccount.balance += amount;
     }
-    
+
+    /**
+     * Method to deposit money into a bank account
+     * @param {number} amount -- amount of money to withdraw
+     * @param {string} accountNumber -- account number of the customer
+     */
+    public withdrawMoney(amount: number, accountNumber: string): void {
+        // check if the account exists
+        const bankAccount = this.findAccount(accountNumber);
+        if(!bankAccount) {
+            // if the account does not exist, throw an error
+            throw new Error("This account does not exist.");
+        }
+
+        // check if the amount exceeds the deposit limit
+        if(amount > 5_000){
+            throw new Error("You have exceeded the withdraw limit of 5k");
+        }
+
+        // check if the account has enough funds for the withdraw
+        // in this case, the user can withdraw to balance = 0
+        if(amount > bankAccount.balance){
+            throw new Error("You have insufficient funds");
+        }
+
+        // remove the money to the balance
+        bankAccount.balance -= amount;
+    }
+  
 }
