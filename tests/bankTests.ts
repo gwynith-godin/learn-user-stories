@@ -101,3 +101,26 @@ try {
 catch(_) {
     console.log("Scenario 4 passed");
 }
+
+// Check Balance Tests
+console.log("\nCheck Balance Tests:")
+
+bank.depositMoney(400.50, "2938298");
+const balance_result = bank.checkBalance("2938298");
+
+//scenario 1
+if(balance_result === 6600.50) {
+    console.log("Scenario 1 passed");
+}
+else {
+    console.log("Scenario 1 failed");
+}
+
+//scenerio 2
+try {
+    bank.checkBalance("2938299");
+    console.log("Scenario 2 failed");
+}
+catch(_) {
+    console.log("Scenario 2 passed");
+}

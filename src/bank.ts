@@ -94,5 +94,21 @@ export default class Bank{
         // remove the money to the balance
         bankAccount.balance -= amount;
     }
-  
+
+    /**
+     * Method to check the current balance of a bank account
+     * @param {string} accountNumber -- account number of the customer
+     * @returns the current balance if a valid account number was given
+     */
+    public checkBalance(accountNumber: string): number {
+        // check if the account exists
+        const bankAccount = this.findAccount(accountNumber);
+        if(!bankAccount) {
+            // if the account does not exist, throw an error
+            throw new Error("This account does not exist.");
+        }
+        
+        // return the current balance
+        return bankAccount.balance;
+    }
 }
